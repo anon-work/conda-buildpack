@@ -23,6 +23,10 @@ MANAGE_FILE=${MANAGE_FILE:-fakepath}
 #pip-grep -s requirements.txt django Django && DJANGO_INSTALLED=1
 
 #bpwatch start collectstatic  # metrics collection
+echo "running collectstatic"
+puts-cmd "python $MANAGE_FILE collectstatic --noinput"
+# Run collectstatic, cleanup some of the noisy output.  
+python $MANAGE_FILE collectstatic --noinput --traceback
 
 if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ] && [ "$DJANGO_INSTALLED" ]; then
     set +e
